@@ -59,7 +59,7 @@ const Player = (props) => {
   return (
     <>
       <PointerLockControls />
-      <mesh ref={ref} />
+      <mesh castShadow ref={ref} />
     </>
   );
 };

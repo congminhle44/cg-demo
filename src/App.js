@@ -14,7 +14,7 @@ function App() {
         <Stars />
         <Physics gravity={[0, -30, 0]}>
           <Player position={[0, 3, 0]} />
-          <Ground position={[0, -0.1, 0]} />
+          <Ground receiveShadow position={[0, -0.1, 0]} />
         </Physics>
       </Canvas>
     </Suspense>

@@ -1,5 +1,6 @@
 import { usePlane } from "@react-three/cannon";
 import { useGLTF } from "@react-three/drei";
+import * as THREE from "three";
 const assetUrl = "/assets/umedalabo_nonright.glb";
 
 const pointLightPositions = [
@@ -11,13 +12,13 @@ const pointLightPositions = [
 ];
 
 const spotLightProperties = [
-  // { position: [-3.35, 2.4, 4.2] },
-  { position: [-3.35, 2.4, 5.35] },
-  // { position: [-3.35, 2.2, 6.58] },
+  { position: [-3.67, 2.2, -3.4] },
+  { position: [-4.85, 2.2, -3.4] },
+  { position: [-6.12, 2.2, -3.4] },
 ];
 
 const Ground = ({ ...props }) => {
-  const { scene } = useGLTF(assetUrl);
+  const { scene, nodes } = useGLTF(assetUrl);
   const [ref] = usePlane(() => ({ rotation: [-Math.PI / 2, 0, 0], ...props }));
 
   const renderPointLight = () => {
@@ -26,15 +27,22 @@ const Ground = ({ ...props }) => {
     });
   };
   const renderSpotLight = () => {
-    return spotLightProperties.map((property) => {
+    console.log(nodes);
+    return spotLightProperties.map((property, index) => {
       return (
+        // <mesh {...property}>
+        //   <boxBufferGeometry args={[0.2, 0.2, 0.2]} />
+        //   <meshBasicMaterial color="#FFF8DA" />
+        // </mesh>
         <spotLight
-          {...property}
-          angle={45}
-          penumbra={0.5}
-          target={{ position: [-1, 0, 0] }}
-          decay={1.0}
-          color="FFF8DA"
+          key={index}
+          position={[3, 1, 3]}
+          angle={Math.PI / 6}
+          castShadow
+          penumbra={0.25}
+          distance={10}
+          decay={0.5}
+          color="#FFF8DA"
           intensity={1}
         />
       );
@@ -44,7 +52,7 @@ const Ground = ({ ...props }) => {
   return (
     <>
       <mesh ref={ref} />
-      <primitive castShadow object={scene} />
+      <primitive rotation={[0, -Math.PI / 2, 0]} castShadow object={scene} />
       {renderPointLight()}
       {renderSpotLight()}
     </>
