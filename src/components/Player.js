@@ -30,7 +30,7 @@ const Player = (props) => {
 
   useFrame(() => {
     camera.position.copy(
-      new Vector3(pos.current[0], pos.current[1], pos.current[2])
+      new Vector3(pos.current[0], pos.current[1] + 0.5, pos.current[2])
     );
     const direction = new Vector3();
     const frontVector = new Vector3(
