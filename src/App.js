@@ -4,12 +4,17 @@ import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
 import Ground from "./components/Ground";
 import Player from "./components/Player";
+import * as THREE from "three";
 
 function App() {
   return (
     <Suspense fallback="loading...">
-      <Canvas shadows={true} style={{ height: "100vh" }}>
-        <ambientLight intensity={0.3} />
+      <Canvas
+        gl={{ toneMapping: THREE.NoToneMapping }}
+        shadows={true}
+        style={{ height: "100vh" }}
+      >
+        <ambientLight intensity={0.5} />
         <Sky sunPosition={[100, 85, 100]} />
         <Stars />
         <Physics gravity={[0, -30, 0]}>
