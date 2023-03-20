@@ -1,7 +1,9 @@
 import { usePlane } from "@react-three/cannon";
-import { useGLTF } from "@react-three/drei";
-import { useMemo } from "react";
-const assetUrl = "/assets/umedalabo_nonright.glb";
+import { Box, SpotLight, useGLTF } from "@react-three/drei";
+import { useEffect, useMemo, useRef } from "react";
+import * as THREE from "three";
+import { Lamp } from "./Lamp";
+const assetUrl = "/assets/umedalabo_nonright_fix.glb";
 
 const pointLightPositions = [
   [-0.597, 2, 0],
@@ -12,14 +14,16 @@ const pointLightPositions = [
 ];
 
 const spotLightProperties = [
-  { position: [-3.67, 2.2, -3.4] },
-  { position: [-4.85, 2.2, -3.4] },
-  { position: [-6.12, 2.2, -3.4] },
+  { position: [-3.67, 1, -3.4] },
+  { position: [-4.85, 1, -3.4] },
+  { position: [-6.12, 1, -3.4] },
 ];
 
 const Ground = ({ ...props }) => {
-  const { scene } = useGLTF(assetUrl);
+  const { scene, nodes } = useGLTF(assetUrl);
+  console.log(nodes[''])
   const [ref] = usePlane(() => ({ rotation: [-Math.PI / 2, 0, 0], ...props }));
+  const spotLightRef = useRef()
 
   useMemo(() => {
     scene.traverse((sceneNode) => {
@@ -30,6 +34,7 @@ const Ground = ({ ...props }) => {
       }
     });
   }, [scene]);
+
 
   const renderPointLight = () => {
     return pointLightPositions.map((position) => {
@@ -44,28 +49,14 @@ const Ground = ({ ...props }) => {
   };
 
   const renderSpotLight = () => {
-    return spotLightProperties.map((property, index) => {
-      return (
-        <spotLight
-          key={index}
-          {...property}
-          angle={Math.PI / 6}
-          castShadow
-          penumbra={0.25}
-          distance={10}
-          decay={0.5}
-          color="#FFF8DA"
-          intensity={1}
-        />
-      );
-    });
+    return spotLightProperties?.map(light => <Lamp position={light.position} />)
   };
 
   return (
     <>
       <mesh ref={ref} />
       <primitive rotation={[0, -Math.PI / 2, 0]} castShadow object={scene} />
-      {/* {renderPointLight()} */}
+      {renderPointLight()}
       {renderSpotLight()}
     </>
   );
