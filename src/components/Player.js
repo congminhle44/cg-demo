@@ -9,12 +9,12 @@ import { useKeyboardInput } from "../hooks/useKeyboardInput";
 const Player = (props) => {
   const {
     movement: { moveBackward, moveForward, moveLeft, moveRight, jump, sprint },
-    fov,
   } = useKeyboardInput();
   const { camera } = useThree();
   const [speed, setSpeed] = useState(5);
   const [ref, api] = useSphere(() => ({
     mass: 1,
+    args: [0.7, 0.5, 6],
     type: "Dynamic",
   }));
   const velocity = useRef([0, 0, 0]);
@@ -29,9 +29,10 @@ const Player = (props) => {
   );
 
   useFrame(() => {
-    camera.position.copy(
-      new Vector3(pos.current[0], pos.current[1] + 0.5, pos.current[2])
-    );
+    !props.debug &&
+      camera.position.copy(
+        new Vector3(pos.current[0], pos.current[1] + 0.6, pos.current[2])
+      );
     const direction = new Vector3();
     const frontVector = new Vector3(
       0,
@@ -43,7 +44,7 @@ const Player = (props) => {
       0,
       0
     );
-    sprint ? setSpeed(10) : setSpeed(5);
+    sprint ? setSpeed(5) : setSpeed(3);
     direction
       .subVectors(frontVector, sideVector)
       .normalize()
@@ -58,8 +59,14 @@ const Player = (props) => {
 
   return (
     <>
-      <PointerLockControls />
-      <mesh castShadow ref={ref} />
+      {!props.debug && <PointerLockControls pointerSpeed={0.6} />}
+      <mesh castShadow ref={ref}>
+        <sphereGeometry />
+        <meshStandardMaterial
+          transparent={true}
+          opacity={props.debug ? 0.7 : 0}
+        />
+      </mesh>
     </>
   );
 };

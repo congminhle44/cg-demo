@@ -1,13 +1,11 @@
-import { useCylinder, useSphere } from "@react-three/cannon"
-import { Box, SpotLight } from "@react-three/drei";
-import { useState } from "react"
+import { SpotLight } from "@react-three/drei";
+import { useState } from "react";
 import * as THREE from "three";
 
 export function Lamp(props) {
-  const [target] = useState(() => new THREE.Object3D())
+  const [target] = useState(() => new THREE.Object3D());
   return (
     <mesh {...props}>
-      {/* <Box args={[0.3, 0.3, 0.3]} /> */}
       <SpotLight
         target={target}
         angle={Math.PI / 2}
@@ -22,5 +20,5 @@ export function Lamp(props) {
       />
       <primitive object={target} position={[0, -1, 0]} />
     </mesh>
-  )
+  );
 }
