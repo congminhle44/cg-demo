@@ -7,11 +7,13 @@ import Player from "./components/Player";
 import * as THREE from "three";
 import House from "./components/House";
 
+import Loading from './components/Loading'
+
 function App() {
   const debug = false;
 
   return (
-    <Suspense fallback="loading...">
+    <Suspense fallback={<Loading />}>
       <Canvas
         gl={{ toneMapping: THREE.NoToneMapping }}
         shadows={true}
