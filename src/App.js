@@ -6,9 +6,11 @@ import Ground from "./components/Ground";
 import Player from "./components/Player";
 import * as THREE from "three";
 
+import Loading from './components/Loading'
+
 function App() {
   return (
-    <Suspense fallback="loading...">
+    <Suspense fallback={<Loading />}>
       <Canvas
         gl={{ toneMapping: THREE.NoToneMapping }}
         shadows={true}
