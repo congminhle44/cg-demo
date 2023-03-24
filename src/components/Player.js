@@ -59,7 +59,7 @@ const Player = (props) => {
 
   return (
     <>
-      {!props.debug && <PointerLockControls pointerSpeed={0.6} />}
+      {!props.debug && <PointerLockControls pointerSpeed={0.3} />}
       <mesh castShadow ref={ref}>
         <sphereGeometry />
         <meshStandardMaterial

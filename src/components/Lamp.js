@@ -1,9 +1,8 @@
 import { SpotLight } from "@react-three/drei";
-import { useState } from "react";
 import * as THREE from "three";
 
-export function Lamp(props) {
-  const [target] = useState(() => new THREE.Object3D());
+export default function Lamp(props) {
+  const target = new THREE.Object3D();
   return (
     <mesh {...props}>
       <SpotLight

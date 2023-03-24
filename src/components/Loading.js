@@ -1,9 +1,10 @@
 const Loading = () => {
   return (
-    <div class="ring">Loading
+    <div className="ring">
+      Loading
       <span></span>
     </div>
-  )
-}
+  );
+};
 
-export default Loading
+export default Loading;

@@ -1,7 +1,9 @@
 import { useGLTF } from "@react-three/drei";
-import { useMemo } from "react";
+import { useEffect } from "react";
 import ColliderBox from "./ColliderBox";
-const assetUrl = "/assets/umedalabo_nonright.glb";
+import { demoVideoTexture } from "../libs/demoVideoTexture";
+import { useFrame } from "@react-three/fiber";
+const assetUrl = "/assets/umedalabo_nonright_fix.glb";
 
 const colliders = [
   //Tables
@@ -23,17 +25,33 @@ const colliders = [
   { position: [4.4, 0.5, 8.5], scale: [3, 5, 4] },
 ];
 
-const House = ({ debug }) => {
-  const { scene } = useGLTF(assetUrl);
-  useMemo(() => {
-    scene.traverse((sceneNode) => {
-      if (sceneNode.isMesh) {
-        // show shadow for model
-        sceneNode.castShadow = true;
-        sceneNode.receiveShadow = true;
-      }
-    });
-  }, [scene]);
+const House = ({ debug, togglePlayGuild, playGuild }) => {
+  const { scene, nodes } = useGLTF(assetUrl);
+  const [videoTexture, videocanvasctx, video] = demoVideoTexture();
+  const oldScreenMaterial = nodes["Screen"]?.children.find(
+    (child) => child.isMesh
+  ).material.map;
+
+  useEffect(() => {
+    if (playGuild) {
+      nodes["Screen"].children.find((child) => child.isMesh).material.map =
+        videoTexture;
+      nodes["Screen-logo"].visible = false;
+    } else {
+      nodes["Screen"].children.find((child) => child.isMesh).material.map =
+        oldScreenMaterial;
+      nodes["Screen-logo"].visible = true;
+    }
+  }, [playGuild, videoTexture, nodes, oldScreenMaterial]);
+
+  useFrame(() => {
+    if (video.readyState === video.HAVE_ENOUGH_DATA && playGuild) {
+      //draw video to canvas starting from upper left corner
+      videocanvasctx.drawImage(video, 900, 2200);
+      //tell texture object it needs to be updated
+      videoTexture.needsUpdate = true;
+    }
+  });
 
   const handleRenderCollider = () => {
     return colliders.map((collider, index) => (
@@ -41,10 +59,15 @@ const House = ({ debug }) => {
     ));
   };
 
+  const handleClickMonitor = (e) => {
+    e.stopPropagation();
+    e?.object.name.includes("moniter00") && togglePlayGuild(!playGuild);
+  };
+
   return (
     <>
       <primitive
-        onPointerEnter={(e) => console.log(e)}
+        onClick={handleClickMonitor}
         rotation={[0, -Math.PI / 2, 0]}
         castShadow
         object={scene}
