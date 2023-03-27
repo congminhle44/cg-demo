@@ -19,10 +19,7 @@ function App() {
       <Crosshair />
       <Canvas
         gl={{
-          toneMapping: THREE.NoToneMapping,
-          capabilities: {
-            maxTextures: 4
-          }
+          toneMapping: THREE.NoToneMapping
         }}
         shadows
         camera={{ position: [2, 2, 2] }}

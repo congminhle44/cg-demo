@@ -22,6 +22,8 @@ const pointLightProperties = [
   { position: [5.4, 2.1, -1.3], color: '#FFFFFF', intensity: 0.4, distance: 6 },
   // Roof light right
   { position: [5.4, 2.1, 4.2], color: '#FFFFFF', intensity: 0.4, distance: 6 },
+  // Hidden kitchen light
+  { position: [6.5, 1.5, 7.5], color: '#FFFFFF', intensity: 1, distance: 6 },
 
   // Wall light
   { position: [-9.6, 1.7, 9.5], color: '#FFFFFF', intensity: 0.5, distance: 5 },

@@ -1,9 +1,8 @@
 import { useGLTF } from '@react-three/drei'
-import { useEffect } from 'react'
+import { Suspense } from 'react'
 import ColliderBox from './ColliderBox'
-import { demoVideoTexture } from '../libs/demoVideoTexture'
-import { useFrame } from '@react-three/fiber'
-const assetUrl = '/assets/umedalabo_nonright_fix.glb'
+import DemoVideo from './DemoVideo'
+const assetUrl = '/assets/umedalabo_nonright.glb'
 
 const colliders = [
   //Tables
@@ -26,21 +25,7 @@ const colliders = [
 ]
 
 const House = ({ debug }) => {
-  const { scene, nodes } = useGLTF(assetUrl)
-  const [videoTexture, videocanvasctx, video] = demoVideoTexture()
-
-  useFrame(() => {
-    if (video.readyState === video.HAVE_ENOUGH_DATA) {
-      //draw video to canvas starting from upper left corner
-      videocanvasctx.drawImage(video, 0, 0)
-      //tell texture object it needs to be updated
-      videoTexture.needsUpdate = true
-    }
-  })
-  console.log(nodes['moniter-l'])
-  useEffect(() => {
-    nodes['moniter-l'].material.map = videoTexture
-  }, [videoTexture, nodes])
+  const { scene } = useGLTF(assetUrl)
 
   const handleRenderCollider = () => {
     return colliders.map((collider, index) => (
@@ -50,7 +35,11 @@ const House = ({ debug }) => {
 
   return (
     <>
-      <primitive rotation={[0, -Math.PI / 2, 0]} castShadow object={scene} />
+      <primitive rotation={[0, -Math.PI / 2, 0]} object={scene} />
+      {/* Main screen at center of the house */}
+      <Suspense fallback={null}>
+        <DemoVideo position={[-0.99, 2.2, -2.98]} scale={[2.1, 1.2, 0]} />
+      </Suspense>
       {handleRenderCollider()}
     </>
   )
