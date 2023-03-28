@@ -37,6 +37,16 @@ function App() {
           <Ground receiveShadow position={[0, 0, 0]} />
         </Physics>
       </Canvas>
+      <div style={{
+        position: 'absolute',
+        top: 0,
+        right: 0,
+        width: '500px',
+        height: '100%',
+        overflowY: 'hidden',
+        zIndex: 1000
+      }}><iframe src="https://meta-heroes.io/#company" width="100%" height="100%">
+        </iframe></div>
     </Suspense>
   );
 }
