@@ -1,8 +1,8 @@
-import { useGLTF } from '@react-three/drei'
-import { Suspense } from 'react'
-import ColliderBox from './ColliderBox'
-import DemoVideo from './DemoVideo'
-const assetUrl = '/assets/umedalabo_nonright.glb'
+import { useGLTF } from "@react-three/drei";
+import { Suspense, useEffect } from "react";
+import ColliderBox from "./ColliderBox";
+import DemoVideo from "./DemoVideo";
+const assetUrl = "/assets/umedalabo_nonight/umedalabo_nonright.gltf";
 
 const colliders = [
   //Tables
@@ -21,28 +21,37 @@ const colliders = [
   { position: [-8, 0.5, 11], scale: [30, 5, 1] },
   { position: [-8.9, 0.9, -3], scale: [1, 5, 30] },
   { position: [0, 3.3, 0], scale: [30, 1, 30] },
-  { position: [4.4, 0.5, 8.5], scale: [3, 5, 4] }
-]
+  { position: [4.4, 0.5, 8.5], scale: [3, 5, 4] },
+];
 
 const House = ({ debug }) => {
-  const { scene } = useGLTF(assetUrl)
+  const { scene } = useGLTF(assetUrl);
 
   const handleRenderCollider = () => {
     return colliders.map((collider, index) => (
       <ColliderBox key={index} debug={debug} {...collider} />
-    ))
-  }
+    ));
+  };
+
+  const handleClick = (e) => {
+    e.stopPropagation();
+    console.log(e?.object.name);
+  };
 
   return (
     <>
-      <primitive rotation={[0, -Math.PI / 2, 0]} object={scene} />
+      <primitive
+        onClick={handleClick}
+        rotation={[0, -Math.PI / 2, 0]}
+        object={scene}
+      />
       {/* Main screen at center of the house */}
       <Suspense fallback={null}>
         <DemoVideo position={[-0.99, 2.2, -2.98]} scale={[2.1, 1.2, 0]} />
       </Suspense>
       {handleRenderCollider()}
     </>
-  )
-}
+  );
+};
 
-export default House
+export default House;

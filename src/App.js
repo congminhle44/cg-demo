@@ -1,17 +1,17 @@
-import { Physics } from '@react-three/cannon'
-import { OrbitControls } from '@react-three/drei'
-import { Canvas } from '@react-three/fiber'
-import { Suspense } from 'react'
-import Ground from './components/Ground'
-import Player from './components/Player'
-import * as THREE from 'three'
-import House from './components/House'
-import Crosshair from './components/Crosshair'
-import Loading from './components/Loading'
-import Pointlights from './components/Pointlights'
-import Spotlights from './components/Spotlights'
+import { Physics } from "@react-three/cannon";
+import { OrbitControls } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
+import { Suspense } from "react";
+import Ground from "./components/Ground";
+import Player from "./components/Player";
+import * as THREE from "three";
+import House from "./components/House";
+import Crosshair from "./components/Crosshair";
+import Loading from "./components/Loading";
+import Pointlights from "./components/Pointlights";
+import Spotlights from "./components/Spotlights";
 
-const debug = false
+const debug = false;
 
 function App() {
   return (
@@ -19,14 +19,14 @@ function App() {
       <Crosshair />
       <Canvas
         gl={{
-          toneMapping: THREE.NoToneMapping
+          toneMapping: THREE.NoToneMapping,
         }}
         shadows
         camera={{ position: [2, 2, 2] }}
-        style={{ height: '100vh' }}
+        style={{ height: "100vh" }}
       >
         {debug && <OrbitControls />}
-        <ambientLight intensity={0.5} />
+        <ambientLight intensity={0.7} />
         <Suspense fallback={null}>
           <Pointlights />
           <Spotlights />
@@ -38,7 +38,7 @@ function App() {
         </Physics>
       </Canvas>
     </Suspense>
-  )
+  );
 }
 
-export default App
+export default App;
