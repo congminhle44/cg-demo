@@ -57,6 +57,7 @@ const Crosshair = ({ hoverOn = '', cursorSelected = '' }) => {
         width: '500px',
         height: '100%',
         overflowY: 'hidden',
+        opacity: 0.92,
         visibility: link ? 'visible' : 'hidden'
       }}>
         <iframe src={link || 'https://meta-heroes.io'} width="100%" height="100%" />
