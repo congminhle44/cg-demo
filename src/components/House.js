@@ -24,7 +24,7 @@ const colliders = [
   { position: [4.4, 0.5, 8.5], scale: [3, 5, 4] },
 ];
 
-const House = ({ debug }) => {
+const House = ({ debug, setHover, setCursorSelected }) => {
   const { scene } = useGLTF(assetUrl);
 
   const handleRenderCollider = () => {
@@ -35,12 +35,21 @@ const House = ({ debug }) => {
 
   const handleClick = (e) => {
     e.stopPropagation();
-    console.log(e?.object.name);
+    setCursorSelected(e?.object.name)
+    document.exitPointerLock()
   };
+
+  const handleHover = (e) => {
+    e.stopPropagation();
+    setHover(e?.object?.name)
+  }
+
+  console.log('render')
 
   return (
     <>
       <primitive
+        onPointerOver={handleHover}
         onClick={handleClick}
         rotation={[0, -Math.PI / 2, 0]}
         object={scene}
