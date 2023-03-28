@@ -20,6 +20,7 @@ function App() {
       <Canvas
         gl={{
           toneMapping: THREE.NoToneMapping,
+          // render: THREE.WebGLBufferRenderer,
         }}
         shadows
         camera={{ position: [2, 2, 2] }}

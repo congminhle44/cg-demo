@@ -1,8 +1,8 @@
 import { useGLTF } from "@react-three/drei";
-import { Suspense, useEffect } from "react";
+import { Suspense } from "react";
 import ColliderBox from "./ColliderBox";
 import DemoVideo from "./DemoVideo";
-const assetUrl = "/assets/umedalabo_nonight/umedalabo_nonright.gltf";
+const assetUrl = "/assets/umedalabo_nonright.glb";
 
 const colliders = [
   //Tables
@@ -47,7 +47,7 @@ const House = ({ debug }) => {
       />
       {/* Main screen at center of the house */}
       <Suspense fallback={null}>
-        <DemoVideo position={[-0.99, 2.2, -2.98]} scale={[2.1, 1.2, 0]} />
+        <DemoVideo position={[-0.99, 2.2, -2.98]} scale={[2.1, 1.2]} />
       </Suspense>
       {handleRenderCollider()}
     </>
