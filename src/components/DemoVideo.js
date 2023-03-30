@@ -14,8 +14,8 @@ const DemoVideo = ({ position, scale }) => {
   const videocanvasctx = videocanvas.getContext("2d");
 
   //set its size
-  videocanvas.width = 640;
-  videocanvas.height = 480;
+  videocanvas.width = 1280;
+  videocanvas.height = 720;
 
   //draw a black rectangle so that your spheres don't start out transparent
   videocanvasctx.fillStyle = "#000000";

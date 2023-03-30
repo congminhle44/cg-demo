@@ -35,16 +35,16 @@ const House = ({ debug, setHover, setCursorSelected }) => {
 
   const handleClick = (e) => {
     e.stopPropagation();
-    setCursorSelected(e?.object.name)
-    document.exitPointerLock()
+    setCursorSelected(e?.object.name);
+    document.exitPointerLock();
   };
 
   const handleHover = (e) => {
     e.stopPropagation();
-    setHover(e?.object?.name)
-  }
+    setHover(e?.object?.name);
+  };
 
-  console.log('render')
+  console.log("render");
 
   return (
     <>
@@ -56,7 +56,7 @@ const House = ({ debug, setHover, setCursorSelected }) => {
       />
       {/* Main screen at center of the house */}
       <Suspense fallback={null}>
-        <DemoVideo position={[-0.99, 2.2, -2.98]} scale={[2.1, 1.2]} />
+        <DemoVideo position={[-0.99, 2.2, -3.01]} scale={[2.1, 1.2]} />
       </Suspense>
       {handleRenderCollider()}
     </>
