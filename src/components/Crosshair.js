@@ -3,9 +3,12 @@ const Crosshair = ({ hoverOn = "", cursorSelected = "" }) => {
     guildboard: "https://meta-heroes.io/#surveice",
     PC001: "https://meta-heroes.io/#company",
     平面: "https://meta-heroes.io/#work",
-    平面001: "https://meta-heroes.io/#work",
+    bar001: "https://meta-heroes.io/#work",
     "counter-table001": "https://meta-heroes.io/#news",
-  }[cursorSelected];
+  };
+
+  const choseLink = { ...link }[cursorSelected];
+  const isLinkHover = Object.keys(link).find((linkKey) => linkKey === hoverOn);
 
   return (
     <div
@@ -34,7 +37,7 @@ const Crosshair = ({ hoverOn = "", cursorSelected = "" }) => {
           border: "solid 1px gray",
         }}
       />
-      {hoverOn && (
+      {isLinkHover && (
         <p
           style={{
             position: "absolute",
@@ -46,7 +49,7 @@ const Crosshair = ({ hoverOn = "", cursorSelected = "" }) => {
             color: "white",
           }}
         >
-          [{hoverOn}]
+          Interact
         </p>
       )}
       <div
@@ -59,11 +62,11 @@ const Crosshair = ({ hoverOn = "", cursorSelected = "" }) => {
           height: "100%",
           overflowY: "hidden",
           opacity: 0.92,
-          visibility: link ? "visible" : "hidden",
+          visibility: choseLink ? "visible" : "hidden",
         }}
       >
         <iframe
-          src={link || "https://meta-heroes.io"}
+          src={choseLink || "https://meta-heroes.io"}
           title={cursorSelected}
           width="100%"
           height="100%"

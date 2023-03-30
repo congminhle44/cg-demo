@@ -4,6 +4,7 @@ import * as THREE from "three";
 const DemoVideo = ({ position, scale }) => {
   const video = document.createElement("video");
   video.src = "/assets/GuildMovie_01.mp4";
+  video.loop = true;
   video.muted = "muted";
   video.load();
   video.play();
@@ -13,8 +14,8 @@ const DemoVideo = ({ position, scale }) => {
   const videocanvasctx = videocanvas.getContext("2d");
 
   //set its size
-  videocanvas.width = 1080;
-  videocanvas.height = 608;
+  videocanvas.width = 640;
+  videocanvas.height = 480;
 
   //draw a black rectangle so that your spheres don't start out transparent
   videocanvasctx.fillStyle = "#000000";
