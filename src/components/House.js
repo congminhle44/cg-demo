@@ -1,3 +1,4 @@
+import React from "react";
 import { useGLTF } from "@react-three/drei";
 import { Suspense } from "react";
 import ColliderBox from "./ColliderBox";
@@ -36,15 +37,12 @@ const House = ({ debug, setHover, setCursorSelected }) => {
   const handleClick = (e) => {
     e.stopPropagation();
     setCursorSelected(e?.object.name);
-    document.exitPointerLock();
   };
 
   const handleHover = (e) => {
     e.stopPropagation();
     setHover(e?.object?.name);
   };
-
-  console.log("render");
 
   return (
     <>
@@ -56,7 +54,7 @@ const House = ({ debug, setHover, setCursorSelected }) => {
       />
       {/* Main screen at center of the house */}
       <Suspense fallback={null}>
-        <DemoVideo position={[-0.99, 2.2, -3.01]} scale={[2.1, 1.2]} />
+        <DemoVideo />
       </Suspense>
       {handleRenderCollider()}
     </>

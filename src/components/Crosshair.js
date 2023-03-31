@@ -1,17 +1,8 @@
-const Crosshair = ({ hoverOn = "", cursorSelected = "" }) => {
-  const link = {
-    guildboard: "https://meta-heroes.io/#surveice",
-    PC001: "https://meta-heroes.io/#company",
-    平面: "https://meta-heroes.io/#work",
-    平面001: "https://meta-heroes.io/#work",
-    bar001: "https://meta-heroes.io/#work",
-    "counter-table001": "https://meta-heroes.io/#news",
-  };
-
-  const selectedLink = link[cursorSelected];
-
-  const isHover = link[hoverOn];
-
+const Crosshair = ({
+  hoverOn = "",
+  cursorSelected = "",
+  setCursorSelected,
+}) => {
   return (
     <div
       style={{
@@ -39,7 +30,7 @@ const Crosshair = ({ hoverOn = "", cursorSelected = "" }) => {
           border: "solid 1px gray",
         }}
       />
-      {isHover && (
+      {hoverOn && (
         <p
           style={{
             position: "absolute",
@@ -64,15 +55,38 @@ const Crosshair = ({ hoverOn = "", cursorSelected = "" }) => {
           height: "100%",
           overflowY: "hidden",
           opacity: 0.92,
-          visibility: selectedLink ? "visible" : "hidden",
+          visibility: cursorSelected ? "visible" : "hidden",
         }}
       >
         <iframe
-          src={selectedLink || "https://meta-heroes.io"}
+          src={cursorSelected || "https://meta-heroes.io"}
           title={cursorSelected}
           width="100%"
           height="100%"
         />
+        <div
+          onClick={(e) => {
+            e.stopPropagation();
+            setCursorSelected("");
+          }}
+          style={{
+            position: "absolute",
+            bottom: 16,
+            right: 16,
+            fontSize: 24,
+            width: "48px",
+            height: "48px",
+            borderRadius: "50%",
+            textAlign: "center",
+            lineHeight: "48px",
+            zIndex: 2,
+            cursor: "pointer",
+            backgroundColor: "rgba(123,121,233,0.8)",
+            color: "white",
+          }}
+        >
+          X
+        </div>
       </div>
     </div>
   );

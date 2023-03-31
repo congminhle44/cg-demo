@@ -1,7 +1,8 @@
 import { useFrame } from "@react-three/fiber";
+import { memo } from "react";
 import * as THREE from "three";
 
-const DemoVideo = ({ position, scale }) => {
+const DemoVideo = memo(function MemoVideo() {
   const video = document.createElement("video");
   video.src = "/assets/GuildMovie_01.mp4";
   video.loop = true;
@@ -31,12 +32,13 @@ const DemoVideo = ({ position, scale }) => {
     }
   });
 
+  // Fix position for demo video monitor
   return (
-    <mesh position={position}>
-      <planeGeometry args={scale} />
+    <mesh position={[-0.99, 2.2, -3.01]}>
+      <planeGeometry args={[2.1, 1.2]} />
       <meshBasicMaterial map={videoTexture} />
     </mesh>
   );
-};
+});
 
 export default DemoVideo;

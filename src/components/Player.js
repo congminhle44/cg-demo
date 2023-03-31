@@ -1,5 +1,4 @@
 import { useSphere } from "@react-three/cannon";
-import { PointerLockControls } from "@react-three/drei";
 import { useThree, useFrame } from "@react-three/fiber";
 import { useRef, useState } from "react";
 import { useEffect } from "react";
@@ -59,7 +58,6 @@ const Player = (props) => {
 
   return (
     <>
-      {!props.debug && <PointerLockControls pointerSpeed={0.3} />}
       <mesh castShadow ref={ref}>
         <sphereGeometry />
         <meshStandardMaterial
