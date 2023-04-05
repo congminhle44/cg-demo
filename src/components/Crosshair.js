@@ -42,7 +42,7 @@ const Crosshair = ({
             color: "white",
           }}
         >
-          [Interact]
+          [Click]
         </p>
       )}
       <div
