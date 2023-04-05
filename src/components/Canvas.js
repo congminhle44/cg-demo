@@ -8,6 +8,7 @@ import House from "./House";
 import Player from "./Player";
 import Pointlights from "./Pointlights";
 import Spotlights from "./Spotlights";
+import ConeInstructions from "./ConeInstructions";
 
 const HouseCanvas = ({ debug, setHover, setCursorSelected, selectedLink }) => {
   const pointerLockRef = useRef(null);
@@ -38,6 +39,7 @@ const HouseCanvas = ({ debug, setHover, setCursorSelected, selectedLink }) => {
       )}
       <ambientLight intensity={0.7} />
       <Suspense fallback={null}>
+        <ConeInstructions />
         <Pointlights />
         <Spotlights />
       </Suspense>
