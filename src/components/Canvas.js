@@ -39,7 +39,7 @@ const HouseCanvas = ({ debug, setHover, setCursorSelected, selectedLink }) => {
       )}
       <ambientLight intensity={0.7} />
       <Suspense fallback={null}>
-        <ConeInstructions />
+        <ConeInstructions setCursorSelected={setCursorSelected} />
         <Pointlights />
         <Spotlights />
       </Suspense>

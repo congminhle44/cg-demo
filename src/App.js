@@ -9,6 +9,7 @@ function App() {
   const [hover, setHover] = useState("");
   const [cursorSelected, setCursorSelected] = useState("");
   // Define active links
+  console.log(cursorSelected);
   const link = {
     guildboard: "https://meta-heroes.io/#surveice",
     PC001: "https://meta-heroes.io/#company",
