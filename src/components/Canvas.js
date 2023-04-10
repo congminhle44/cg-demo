@@ -1,5 +1,9 @@
 import { Physics } from "@react-three/cannon";
-import { OrbitControls, PointerLockControls } from "@react-three/drei";
+import {
+  OrbitControls,
+  PointerLockControls,
+  FirstPersonControls,
+} from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Suspense, useRef } from "react";
 import * as THREE from "three";
@@ -10,16 +14,22 @@ import Pointlights from "./Pointlights";
 import Spotlights from "./Spotlights";
 import ConeInstructions from "./ConeInstructions";
 
-const HouseCanvas = ({ debug, setHover, setCursorSelected, selectedLink }) => {
+const HouseCanvas = ({
+  debug,
+  setHover,
+  setCursorSelected,
+  selectedLink,
+  joyStick,
+}) => {
   const pointerLockRef = useRef(null);
   setTimeout(() => {
     if (pointerLockRef?.current && selectedLink) {
       setTimeout(() => {
-        pointerLockRef?.current.unlock();
+        pointerLockRef?.current?.unlock();
       }, 5);
     } else {
       setTimeout(() => {
-        pointerLockRef?.current.lock();
+        pointerLockRef?.current?.lock();
       }, 5);
     }
   }, [pointerLockRef, selectedLink]);
@@ -32,6 +42,7 @@ const HouseCanvas = ({ debug, setHover, setCursorSelected, selectedLink }) => {
       shadows
       camera={{ position: [2, 2, 2] }}
       style={{ height: "100vh" }}
+      dpr={[1, 2]}
     >
       {debug && <OrbitControls />}
       {!debug && (
@@ -44,7 +55,7 @@ const HouseCanvas = ({ debug, setHover, setCursorSelected, selectedLink }) => {
         <Spotlights />
       </Suspense>
       <Physics gravity={[0, -30, 0]}>
-        <Player debug={debug} position={[2, 0, 2]} />
+        <Player joyStick={joyStick} debug={debug} position={[2, 0, 2]} />
         <House
           debug={debug}
           setHover={setHover}

@@ -1,5 +1,5 @@
 import { Suspense, useState } from "react";
-import Crosshair from "./components/Crosshair";
+import Interface from "./components/Interface";
 import Loading from "./components/Loading";
 import HouseCanvas from "./components/Canvas";
 
@@ -8,8 +8,13 @@ const debug = false;
 function App() {
   const [hover, setHover] = useState("");
   const [cursorSelected, setCursorSelected] = useState("");
-  // Define active links
-  console.log(cursorSelected);
+  const [joyStick, setJoyStick] = useState({
+    forward: false,
+    backward: false,
+    left: false,
+    right: false,
+  });
+
   const link = {
     guildboard: "https://meta-heroes.io/#surveice",
     PC001: "https://meta-heroes.io/#company",
@@ -21,19 +26,33 @@ function App() {
   const selectedLink = link[cursorSelected];
   const isHover = link[hover];
 
+  const handleJoyStickPress = (e) => {
+    e.stopPropagation();
+    setJoyStick({ ...joyStick, [e.target.name]: true });
+  };
+  const handleJoyStickRelease = (e) => {
+    e.stopPropagation();
+    setJoyStick({ ...joyStick, [e.target.name]: false });
+  };
+
   return (
     <Suspense fallback={<Loading />}>
-      <Crosshair
-        setCursorSelected={setCursorSelected}
-        hoverOn={isHover}
-        cursorSelected={selectedLink}
-      />
-      <HouseCanvas
-        debug={debug}
-        setHover={setHover}
-        setCursorSelected={setCursorSelected}
-        selectedLink={selectedLink}
-      />
+      <div id="container">
+        <Interface
+          setCursorSelected={setCursorSelected}
+          hoverOn={isHover}
+          cursorSelected={selectedLink}
+          handleJoyStickPress={handleJoyStickPress}
+          handleJoyStickRelease={handleJoyStickRelease}
+        />
+        <HouseCanvas
+          debug={debug}
+          setHover={setHover}
+          joyStick={joyStick}
+          setCursorSelected={setCursorSelected}
+          selectedLink={selectedLink}
+        />
+      </div>
     </Suspense>
   );
 }
