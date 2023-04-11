@@ -41,7 +41,7 @@ const HouseCanvas = ({
       dpr={[1, 2]}
     >
       {debug && <OrbitControls />}
-      {!debug && window.innerWidth > 1024 && (
+      {!debug && window.innerWidth > 1367 && (
         <PointerLockControls ref={pointerLockRef} pointerSpeed={0.3} />
       )}
       <ambientLight intensity={0.7} />

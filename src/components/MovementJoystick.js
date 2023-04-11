@@ -1,7 +1,7 @@
 const MovementJoystick = ({ handleJoyStickPress, handleJoyStickRelease }) => {
   return (
     <>
-      {window.innerWidth < 1024 && (
+      {window.innerWidth < 1367 && (
         <div
           style={{
             position: "absolute",

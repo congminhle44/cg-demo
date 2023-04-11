@@ -1,7 +1,7 @@
 const Interface = ({ hoverOn = "" }) => {
   return (
     <>
-      {window.innerWidth > 1024 && (
+      {window.innerWidth > 1367 && (
         <div
           style={{
             position: "absolute",
@@ -15,7 +15,7 @@ const Interface = ({ hoverOn = "" }) => {
             zIndex: 2,
           }}
         >
-          {window.innerWidth > 1024 && (
+          {window.innerWidth > 1367 && (
             <>
               <div
                 style={{

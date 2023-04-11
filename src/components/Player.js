@@ -33,7 +33,7 @@ const Player = (props) => {
       camera.position.copy(
         new Vector3(pos.current[0], pos.current[1] + 0.6, pos.current[2])
       );
-    window.innerWidth < 1024 &&
+    window.innerWidth < 1367 &&
       camera.rotation.set(
         props.joyStick.lookUp &&
           camera.rotation.x < THREE.MathUtils.degToRad(90)
