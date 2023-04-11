@@ -1,9 +1,5 @@
 import { Physics } from "@react-three/cannon";
-import {
-  OrbitControls,
-  PointerLockControls,
-  FirstPersonControls,
-} from "@react-three/drei";
+import { OrbitControls, PointerLockControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Suspense, useRef } from "react";
 import * as THREE from "three";
@@ -40,12 +36,12 @@ const HouseCanvas = ({
         toneMapping: THREE.NoToneMapping,
       }}
       shadows
-      camera={{ position: [2, 2, 2] }}
+      camera={{ position: [0, 0, 0] }}
       style={{ height: "100vh" }}
       dpr={[1, 2]}
     >
       {debug && <OrbitControls />}
-      {!debug && (
+      {!debug && window.innerWidth > 1024 && (
         <PointerLockControls ref={pointerLockRef} pointerSpeed={0.3} />
       )}
       <ambientLight intensity={0.7} />

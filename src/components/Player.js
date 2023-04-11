@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { useEffect } from "react";
 import { Vector3 } from "three";
 import { useKeyboardInput } from "../hooks/useKeyboardInput";
+import * as THREE from "three";
 
 const Player = (props) => {
   const {
@@ -32,16 +33,32 @@ const Player = (props) => {
       camera.position.copy(
         new Vector3(pos.current[0], pos.current[1] + 0.6, pos.current[2])
       );
+    window.innerWidth < 1024 &&
+      camera.rotation.set(
+        props.joyStick.lookUp &&
+          camera.rotation.x < THREE.MathUtils.degToRad(90)
+          ? camera.rotation.x + 0.05
+          : props.joyStick.lookDown &&
+            camera.rotation.x > THREE.MathUtils.degToRad(-90)
+          ? camera.rotation.x - 0.05
+          : camera.rotation.x,
+        props.joyStick.lookLeft
+          ? camera.rotation.y + 0.05
+          : props.joyStick.lookRight
+          ? camera.rotation.y - 0.05
+          : camera.rotation.y,
+        0
+      );
     const direction = new Vector3();
     const frontVector = new Vector3(
       0,
       0,
-      (moveBackward || props.joyStick.backward ? 1 : 0) -
-        (moveForward || props.joyStick.forward ? 1 : 0)
+      (moveBackward || props.joyStick.backward ? 0.5 : 0) -
+        (moveForward || props.joyStick.forward ? 0.5 : 0)
     );
     const sideVector = new Vector3(
-      (moveLeft || props.joyStick.left ? 1 : 0) -
-        (moveRight || props.joyStick.right ? 1 : 0),
+      (moveLeft || props.joyStick.left ? 0.5 : 0) -
+        (moveRight || props.joyStick.right ? 0.5 : 0),
       0,
       0
     );
@@ -53,7 +70,10 @@ const Player = (props) => {
       .applyEuler(camera.rotation);
 
     api.velocity.set(direction.x, velocity.current[1], direction.z);
-    if (jump && Math.abs(velocity.current[1].toFixed(2)) < 0.01) {
+    if (
+      (jump || props.joyStick.jump) &&
+      Math.abs(velocity.current[1].toFixed(2)) < 0.01
+    ) {
       api.velocity.set(velocity.current[0], 8, velocity.current[2]);
     }
   });

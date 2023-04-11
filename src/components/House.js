@@ -48,7 +48,7 @@ const House = ({ debug, setHover, setCursorSelected }) => {
     <>
       <primitive
         onPointerOver={handleHover}
-        onClick={handleClick}
+        onPointerUp={handleClick}
         rotation={[0, -Math.PI / 2, 0]}
         object={scene}
       />
@@ -62,3 +62,4 @@ const House = ({ debug, setHover, setCursorSelected }) => {
 };
 
 export default House;
+useGLTF.preload(assetUrl);

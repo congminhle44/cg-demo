@@ -1,7 +1,10 @@
 import { Suspense, useState } from "react";
-import Interface from "./components/Interface";
+import Crosshair from "./components/Crosshair";
 import Loading from "./components/Loading";
 import HouseCanvas from "./components/Canvas";
+import IFrame from "./components/Iframe";
+import CameraJoystick from "./components/CameraJoystick";
+import MovementJoystick from "./components/MovementJoystick";
 
 const debug = false;
 
@@ -13,6 +16,11 @@ function App() {
     backward: false,
     left: false,
     right: false,
+    jump: false,
+    lookUp: false,
+    lookLeft: false,
+    lookRight: false,
+    lookDown: false,
   });
 
   const link = {
@@ -28,20 +36,28 @@ function App() {
 
   const handleJoyStickPress = (e) => {
     e.stopPropagation();
+    e.preventDefault();
     setJoyStick({ ...joyStick, [e.target.name]: true });
   };
   const handleJoyStickRelease = (e) => {
     e.stopPropagation();
+    e.preventDefault();
     setJoyStick({ ...joyStick, [e.target.name]: false });
   };
 
   return (
     <Suspense fallback={<Loading />}>
       <div id="container">
-        <Interface
-          setCursorSelected={setCursorSelected}
-          hoverOn={isHover}
+        <Crosshair hoverOn={isHover} />
+        <IFrame
           cursorSelected={selectedLink}
+          setCursorSelected={setCursorSelected}
+        />
+        <CameraJoystick
+          handleJoyStickPress={handleJoyStickPress}
+          handleJoyStickRelease={handleJoyStickRelease}
+        />
+        <MovementJoystick
           handleJoyStickPress={handleJoyStickPress}
           handleJoyStickRelease={handleJoyStickRelease}
         />
