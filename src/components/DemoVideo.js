@@ -4,7 +4,8 @@ import * as THREE from "three";
 
 const DemoVideo = memo(function MemoVideo() {
   const video = document.createElement("video");
-  video.src = "/assets/GuildMovie_01.mp4";
+  video.crossOrigin = 'anonymous'
+  video.src = "https://static.techwiz.tech/cg-static/assets/media-output/metahero-720hd-demo.mp4";
   video.loop = true;
   video.autoplay = true;
   video.muted = "muted";
