@@ -43,6 +43,7 @@ const CameraJoystick = ({ handleJoyStickPress, handleJoyStickRelease }) => {
               name="lookLeft"
               onPointerDown={handleJoyStickPress}
               onPointerUp={handleJoyStickRelease}
+              onPointerLeave={handleJoyStickRelease}
             >
               <img
                 style={{ pointerEvents: "none" }}
@@ -73,6 +74,7 @@ const CameraJoystick = ({ handleJoyStickPress, handleJoyStickRelease }) => {
               name="lookRight"
               onPointerDown={handleJoyStickPress}
               onPointerUp={handleJoyStickRelease}
+              onPointerLeave={handleJoyStickRelease}
             >
               <img
                 style={{ pointerEvents: "none" }}

@@ -24,6 +24,7 @@ const MovementJoystick = ({ handleJoyStickPress, handleJoyStickRelease }) => {
             name="forward"
             onPointerDown={handleJoyStickPress}
             onPointerUp={handleJoyStickRelease}
+            onPointerLeave={handleJoyStickRelease}
           >
             <img
               style={{ pointerEvents: "none" }}
@@ -43,6 +44,7 @@ const MovementJoystick = ({ handleJoyStickPress, handleJoyStickRelease }) => {
               name="left"
               onPointerDown={handleJoyStickPress}
               onPointerUp={handleJoyStickRelease}
+              onPointerLeave={handleJoyStickRelease}
             >
               <img
                 style={{ pointerEvents: "none" }}
@@ -61,6 +63,7 @@ const MovementJoystick = ({ handleJoyStickPress, handleJoyStickRelease }) => {
               name="jump"
               onPointerDown={handleJoyStickPress}
               onPointerUp={handleJoyStickRelease}
+              onPointerLeave={handleJoyStickRelease}
             ></button>
             <button
               style={{
@@ -73,6 +76,7 @@ const MovementJoystick = ({ handleJoyStickPress, handleJoyStickRelease }) => {
               name="right"
               onPointerDown={handleJoyStickPress}
               onPointerUp={handleJoyStickRelease}
+              onPointerLeave={handleJoyStickRelease}
             >
               <img
                 style={{ pointerEvents: "none" }}
@@ -92,6 +96,7 @@ const MovementJoystick = ({ handleJoyStickPress, handleJoyStickRelease }) => {
             name="backward"
             onPointerDown={handleJoyStickPress}
             onPointerUp={handleJoyStickRelease}
+            onPointerLeave={handleJoyStickRelease}
           >
             <img
               style={{ pointerEvents: "none" }}

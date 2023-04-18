@@ -10,6 +10,9 @@ const debug = false;
 
 function App() {
   const [hover, setHover] = useState("");
+  const [instructDevice, setInstructDevice] = useState(
+    window.innerWidth >= 1336 ? "pc" : "mobile"
+  );
   const [cursorSelected, setCursorSelected] = useState("");
   const [joyStick, setJoyStick] = useState({
     forward: false,
@@ -46,7 +49,14 @@ function App() {
   };
 
   return (
-    <Suspense fallback={<Loading />}>
+    <Suspense
+      fallback={
+        <Loading
+          instructDevice={instructDevice}
+          setInstructDevice={setInstructDevice}
+        />
+      }
+    >
       <div id="container">
         <Crosshair hoverOn={isHover} />
         <IFrame
