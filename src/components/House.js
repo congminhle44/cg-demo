@@ -3,7 +3,8 @@ import { useGLTF } from "@react-three/drei";
 import { Suspense } from "react";
 import ColliderBox from "./ColliderBox";
 import DemoVideo from "./DemoVideo";
-const assetUrl = "/assets/umedalabo_nonright.glb";
+const assetUrl =
+  "https://static.techwiz.tech/cg-static/assets/umedalabo_nonright.glb";
 
 const colliders = [
   //Tables
@@ -25,7 +26,7 @@ const colliders = [
   { position: [4.4, 0.5, 8.5], scale: [3, 5, 4] },
 ];
 
-const House = ({ debug, setHover, setCursorSelected }) => {
+const House = ({ debug, setHover, setCursorSelected, setShowDemoCanvas }) => {
   const { scene } = useGLTF(assetUrl);
 
   const handleRenderCollider = () => {
@@ -37,6 +38,9 @@ const House = ({ debug, setHover, setCursorSelected }) => {
   const handleClick = (e) => {
     e.stopPropagation();
     setCursorSelected(e?.object.name);
+    if (e?.object.name === "moniter-l" && window.innerWidth <= 1366) {
+      setShowDemoCanvas(true);
+    }
   };
 
   const handleHover = (e) => {

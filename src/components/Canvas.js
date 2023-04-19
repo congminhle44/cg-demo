@@ -16,6 +16,8 @@ const HouseCanvas = ({
   setCursorSelected,
   selectedLink,
   joyStick,
+  showInstruct,
+  setShowDemoCanvas,
 }) => {
   const pointerLockRef = useRef(null);
   setTimeout(() => {
@@ -41,7 +43,7 @@ const HouseCanvas = ({
       dpr={[1, 2]}
     >
       {debug && <OrbitControls />}
-      {!debug && window.innerWidth > 1367 && (
+      {!debug && window.innerWidth > 1367 && !showInstruct && (
         <PointerLockControls ref={pointerLockRef} pointerSpeed={0.3} />
       )}
       <ambientLight intensity={0.7} />
@@ -55,6 +57,7 @@ const HouseCanvas = ({
         <House
           debug={debug}
           setHover={setHover}
+          setShowDemoCanvas={setShowDemoCanvas}
           setCursorSelected={setCursorSelected}
         />
         <Ground receiveShadow position={[0, 0, 0]} />

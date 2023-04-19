@@ -4,7 +4,7 @@ import * as THREE from "three";
 export default function Lamp(props) {
   const target = new THREE.Object3D();
   return (
-    <mesh {...props}>
+    <group dispose={null} {...props}>
       <SpotLight
         target={target}
         angle={Math.PI / 2}
@@ -18,6 +18,6 @@ export default function Lamp(props) {
         castShadow
       />
       <primitive object={target} position={[0, -1, 0]} />
-    </mesh>
+    </group>
   );
 }
