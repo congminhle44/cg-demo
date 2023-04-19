@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/metaverse/static/css/main.6ae16bd4.css",
+    "main.js": "/metaverse/static/js/main.3796bc39.js",
+    "index.html": "/metaverse/index.html",
+    "main.6ae16bd4.css.map": "/metaverse/static/css/main.6ae16bd4.css.map",
+    "main.3796bc39.js.map": "/metaverse/static/js/main.3796bc39.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6ae16bd4.css",
+    "static/js/main.3796bc39.js"
+  ]
+}
