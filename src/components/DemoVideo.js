@@ -1,27 +1,28 @@
-import { useFrame } from "@react-three/fiber";
-import { memo } from "react";
-import * as THREE from "three";
+import { useFrame } from '@react-three/fiber'
+import { memo } from 'react'
+import * as THREE from 'three'
+import { config } from '../config'
 
 const DemoVideo = memo(function MemoVideo() {
-  const video = document.createElement("video");
+  const video = document.createElement('video')
   video.crossOrigin = 'anonymous'
-  video.src = "https://static.techwiz.tech/cg-static/assets/media-output/metahero-720hd-demo.mp4";
-  video.loop = true;
-  video.autoplay = true;
-  video.muted = "muted";
-  video.play();
+  video.src = `${config.apiHost}/demo-video.mp4`
+  video.loop = true
+  video.autoplay = true
+  video.muted = 'muted'
+  video.play()
 
   //make your video canvas
-  const videocanvas = document.createElement("canvas");
-  const videocanvasctx = videocanvas.getContext("2d");
-  const videoTexture = new THREE.VideoTexture(video);
+  const videocanvas = document.createElement('canvas')
+  const videocanvasctx = videocanvas.getContext('2d')
+  const videoTexture = new THREE.VideoTexture(video)
 
   useFrame(() => {
     if (video.readyState === video.HAVE_ENOUGH_DATA) {
       //draw video to canvas starting from upper left corner
-      videocanvasctx.drawImage(video, 0, 0);
+      videocanvasctx.drawImage(video, 0, 0)
     }
-  });
+  })
 
   // Fix position for demo video monitor
   return (
@@ -29,7 +30,7 @@ const DemoVideo = memo(function MemoVideo() {
       <planeGeometry args={[2.1, 1.2]} />
       <meshBasicMaterial map={videoTexture} />
     </mesh>
-  );
-});
+  )
+})
 
-export default DemoVideo;
+export default DemoVideo

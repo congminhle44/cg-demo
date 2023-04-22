@@ -50,7 +50,9 @@ const Admin = () => {
           </div>
         </div>
 
-        <button type="submit">Login</button>
+        <button className="submit-btn" type="submit">
+          Login
+        </button>
       </form>
     </div>
   )

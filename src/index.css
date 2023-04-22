@@ -7,7 +7,6 @@ body,
 html {
   user-select: none;
   user-zoom: none;
-  overflow: hidden;
 }
 
 body {
@@ -17,6 +16,7 @@ body {
 #container {
   display: block;
   background: #262626;
+  overflow: hidden;
 }
 
 .loading {
@@ -24,6 +24,7 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
+  background: #262626;
 }
 .instruction-container {
   position: absolute;
@@ -133,22 +134,23 @@ body {
   height:100vh;
 }
 .login-form{
-  width:350px;
+  width:fit-content;
   padding:24px;
   border-radius: 16px;
   border:1px dashed #bdbdbd;
 }
 
-.login-form label{
+label{
   font-size: 24px;
 }
 
-.login-form .input-wrap{
+.input-wrap{
   margin-top:12px;
 }
 
-.login-form input{
+input{
   width:100%;
+  min-width: 348px;
   font-size: 18px;
   border:1px dotted orange;
   border-radius: 8px;
@@ -161,7 +163,7 @@ body {
   width:100%;
 }
 
-.login-form button{
+.submit-btn{
   padding: 12px 16px;
   border-radius: 8px;
   margin-top: 16px;
@@ -170,5 +172,27 @@ body {
   border:none;
   font-size: 18px;
   color:white;
-  cursor:pointer
+  cursor: pointer
+}
+
+.dashboard-container{
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.dashboard-items{
+  display: flex;
+  gap:48px;
+}
+
+.dashboard-items img{
+  width:480px;
+  height:240px
+}
+
+.dashboard-items .link{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom:16px;
 }
