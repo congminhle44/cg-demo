@@ -9,7 +9,6 @@ const IFrame = ({ cursorSelected, setCursorSelected }) => {
         width: "500px",
         height: "100%",
         overflowY: "hidden",
-        opacity: 0.92,
         zIndex: 3,
         visibility: cursorSelected ? "visible" : "hidden",
       }}
