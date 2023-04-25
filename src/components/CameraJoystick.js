@@ -41,8 +41,8 @@ const CameraJoystick = ({ handleJoyStickPress, handleJoyStickRelease }) => {
                 border: "none",
               }}
               name="lookLeft"
-              onPointerDown={handleJoyStickPress}
-              onPointerUp={handleJoyStickRelease}
+              onTouchStart={handleJoyStickPress}
+              onTouchEnd={handleJoyStickRelease}
               onPointerLeave={handleJoyStickRelease}
             >
               <img
@@ -72,8 +72,8 @@ const CameraJoystick = ({ handleJoyStickPress, handleJoyStickRelease }) => {
                 border: "none",
               }}
               name="lookRight"
-              onPointerDown={handleJoyStickPress}
-              onPointerUp={handleJoyStickRelease}
+              onTouchStart={handleJoyStickPress}
+              onTouchEnd={handleJoyStickRelease}
               onPointerLeave={handleJoyStickRelease}
             >
               <img

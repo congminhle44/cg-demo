@@ -22,8 +22,8 @@ const MovementJoystick = ({ handleJoyStickPress, handleJoyStickRelease }) => {
               border: "none",
             }}
             name="forward"
-            onPointerDown={handleJoyStickPress}
-            onPointerUp={handleJoyStickRelease}
+            onTouchStart={handleJoyStickPress}
+            onTouchEnd={handleJoyStickRelease}
             onPointerLeave={handleJoyStickRelease}
           >
             <img
@@ -42,8 +42,8 @@ const MovementJoystick = ({ handleJoyStickPress, handleJoyStickRelease }) => {
                 border: "none",
               }}
               name="left"
-              onPointerDown={handleJoyStickPress}
-              onPointerUp={handleJoyStickRelease}
+              onTouchStart={handleJoyStickPress}
+              onTouchEnd={handleJoyStickRelease}
               onPointerLeave={handleJoyStickRelease}
             >
               <img
@@ -61,8 +61,8 @@ const MovementJoystick = ({ handleJoyStickPress, handleJoyStickRelease }) => {
                 border: "none",
               }}
               name="jump"
-              onPointerDown={handleJoyStickPress}
-              onPointerUp={handleJoyStickRelease}
+              onTouchStart={handleJoyStickPress}
+              onTouchEnd={handleJoyStickRelease}
               onPointerLeave={handleJoyStickRelease}
             ></button>
             <button
@@ -74,8 +74,8 @@ const MovementJoystick = ({ handleJoyStickPress, handleJoyStickRelease }) => {
                 border: "none",
               }}
               name="right"
-              onPointerDown={handleJoyStickPress}
-              onPointerUp={handleJoyStickRelease}
+              onTouchStart={handleJoyStickPress}
+              onTouchEnd={handleJoyStickRelease}
               onPointerLeave={handleJoyStickRelease}
             >
               <img
@@ -94,8 +94,8 @@ const MovementJoystick = ({ handleJoyStickPress, handleJoyStickRelease }) => {
               border: "none",
             }}
             name="backward"
-            onPointerDown={handleJoyStickPress}
-            onPointerUp={handleJoyStickRelease}
+            onTouchStart={handleJoyStickPress}
+            onTouchEnd={handleJoyStickRelease}
             onPointerLeave={handleJoyStickRelease}
           >
             <img

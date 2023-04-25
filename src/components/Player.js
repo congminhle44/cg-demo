@@ -4,7 +4,6 @@ import { useRef, useState } from "react";
 import { useEffect } from "react";
 import { Vector3 } from "three";
 import { useKeyboardInput } from "../hooks/useKeyboardInput";
-import * as THREE from "three";
 
 const Player = (props) => {
   const {
@@ -34,13 +33,9 @@ const Player = (props) => {
         new Vector3(pos.current[0], pos.current[1] + 0.6, pos.current[2])
       );
     if (window.innerWidth < 1367) {
-      const xVec = props.joyStick.lookLeft - props.joyStick.lookRight
+      const xVec = props.joyStick.lookLeft - props.joyStick.lookRight;
 
-      camera.rotation.set(
-        0,
-        camera.rotation.y + xVec * 0.05,
-        0
-      );
+      camera.rotation.set(0, camera.rotation.y + xVec * 0.05, 0);
     }
 
     const direction = new Vector3();
