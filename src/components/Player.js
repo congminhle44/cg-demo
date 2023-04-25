@@ -33,22 +33,16 @@ const Player = (props) => {
       camera.position.copy(
         new Vector3(pos.current[0], pos.current[1] + 0.6, pos.current[2])
       );
-    window.innerWidth < 1367 &&
+    if (window.innerWidth < 1367) {
+      const xVec = props.joyStick.lookLeft - props.joyStick.lookRight
+
       camera.rotation.set(
-        props.joyStick.lookUp &&
-          camera.rotation.x < THREE.MathUtils.degToRad(90)
-          ? camera.rotation.x + 0.05
-          : props.joyStick.lookDown &&
-            camera.rotation.x > THREE.MathUtils.degToRad(-90)
-          ? camera.rotation.x - 0.05
-          : camera.rotation.x,
-        props.joyStick.lookLeft
-          ? camera.rotation.y + 0.05
-          : props.joyStick.lookRight
-          ? camera.rotation.y - 0.05
-          : camera.rotation.y,
+        0,
+        camera.rotation.y + xVec * 0.05,
         0
       );
+    }
+
     const direction = new Vector3();
     const frontVector = new Vector3(
       0,

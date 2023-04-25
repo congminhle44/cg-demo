@@ -11,6 +11,18 @@ import axios from 'axios'
 
 const debug = false
 
+const defaultJoyStick = {
+  forward: false,
+  backward: false,
+  left: false,
+  right: false,
+  jump: false,
+  lookUp: false,
+  lookLeft: false,
+  lookRight: false,
+  lookDown: false
+}
+
 const Home = () => {
   const videoUrl = `${config.apiHost}/demo-video.mp4`
   const [hover, setHover] = useState('')
@@ -21,17 +33,7 @@ const Home = () => {
   const [cursorSelected, setCursorSelected] = useState('')
   const [showDemoCanvas, setShowDemoCanvas] = useState(false)
   const [linkData, setLinkData] = useState()
-  const [joyStick, setJoyStick] = useState({
-    forward: false,
-    backward: false,
-    left: false,
-    right: false,
-    jump: false,
-    lookUp: false,
-    lookLeft: false,
-    lookRight: false,
-    lookDown: false
-  })
+  const [joyStick, setJoyStick] = useState(defaultJoyStick)
 
   const link = { ...linkData }
   const selectedLink = link[cursorSelected]
@@ -52,6 +54,16 @@ const Home = () => {
     e.preventDefault()
     setJoyStick({ ...joyStick, [e.target.name]: false })
   }
+  const handleDisableZooming = (e) => {
+    setJoyStick(defaultJoyStick)
+  }
+  useEffect(() => {
+    document.addEventListener('touchend', handleDisableZooming)
+    return () => {
+      document.removeEventListener('touchend', handleDisableZooming)
+    }
+  })
+
   const handleFetchLinks = () => {
     return axios
       .get(`${config.apiHost}/api/links`)
