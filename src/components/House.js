@@ -7,13 +7,6 @@ const assetUrl =
   'https://static.techwiz.tech/cg-static/assets/umedalabo_nonright.glb'
 
 const colliders = [
-  //Tables
-  { position: [0.65, 0.5, 1.86], scale: [1.25, 0.6, 2.4] },
-  { position: [-2.54, 0.5, 1.86], scale: [1.25, 0.6, 2.4] },
-  { position: [-5.32, 0.5, 1.86], scale: [1.25, 0.6, 2.4] },
-  { position: [0.65, 0.5, 6], scale: [1.25, 0.6, 2.4] },
-  { position: [-2.54, 0.5, 6], scale: [1.25, 0.6, 2.4] },
-  { position: [-5.32, 0.5, 6], scale: [1.25, 0.6, 2.4] },
   // Bar
   { position: [4.8, 0.5, 1.6], scale: [0.8, 1, 7] },
   // Wall

@@ -15,10 +15,11 @@ const HouseCanvas = ({
   setHover,
   setCursorSelected,
   selectedLink,
-  joyStick,
   showInstruct,
   setShowDemoCanvas,
-  videoUrl
+  joystickDirection,
+  videoUrl,
+  joystickRotation
 }) => {
   const pointerLockRef = useRef(null)
   setTimeout(() => {
@@ -32,13 +33,11 @@ const HouseCanvas = ({
       }, 5)
     }
   }, [pointerLockRef, selectedLink])
-
   return (
     <Canvas
       gl={{
         toneMapping: THREE.NoToneMapping
       }}
-      shadows
       camera={{ position: [0, 0, 0] }}
       style={{ height: '100vh' }}
       dpr={[1, 2]}
@@ -54,7 +53,12 @@ const HouseCanvas = ({
         <Spotlights />
       </Suspense>
       <Physics gravity={[0, -30, 0]}>
-        <Player joyStick={joyStick} debug={debug} position={[2, 0, 2]} />
+        <Player
+          debug={debug}
+          position={[2, 0, 2]}
+          joystickDirection={joystickDirection}
+          joystickRotation={joystickRotation}
+        />
         <House
           debug={debug}
           setHover={setHover}

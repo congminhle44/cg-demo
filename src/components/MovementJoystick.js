@@ -1,113 +1,38 @@
-const MovementJoystick = ({ handleJoyStickPress, handleJoyStickRelease }) => {
+import { Joystick } from 'react-joystick-component'
+
+const MovementJoystick = ({ setJoystickDirection }) => {
+  const handleMove = (e) => {
+    setJoystickDirection(e.direction)
+  }
+  const handleStop = () => {
+    setJoystickDirection('')
+  }
   return (
     <>
       {window.innerWidth < 1367 && (
         <div
           style={{
-            position: "absolute",
+            position: 'absolute',
             bottom: 40,
             left: 40,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            zIndex: 2,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            zIndex: 2
           }}
         >
-          <button
-            style={{
-              width: 48,
-              height: 48,
-              backgroundColor: "rgba(0,0,0,0.7)",
-              outline: "none",
-              border: "none",
-            }}
-            name="forward"
-            onTouchStart={handleJoyStickPress}
-            onTouchEnd={handleJoyStickRelease}
-            onPointerLeave={handleJoyStickRelease}
-          >
-            <img
-              style={{ pointerEvents: "none" }}
-              src="/assets/keyboard_arrow_up.svg"
-              alt="forward"
-            />
-          </button>
-          <div style={{ display: "flex" }}>
-            <button
-              style={{
-                width: 48,
-                height: 48,
-                backgroundColor: "rgba(0,0,0,0.7)",
-                outline: "none",
-                border: "none",
-              }}
-              name="left"
-              onTouchStart={handleJoyStickPress}
-              onTouchEnd={handleJoyStickRelease}
-              onPointerLeave={handleJoyStickRelease}
-            >
-              <img
-                style={{ pointerEvents: "none" }}
-                src="/assets/keyboard_arrow_left.svg"
-                alt="left"
-              />
-            </button>
-            <button
-              style={{
-                width: 48,
-                height: 48,
-                backgroundColor: "rgba(0,0,0,0.7)",
-                outline: "none",
-                border: "none",
-              }}
-              name="jump"
-              onTouchStart={handleJoyStickPress}
-              onTouchEnd={handleJoyStickRelease}
-              onPointerLeave={handleJoyStickRelease}
-            ></button>
-            <button
-              style={{
-                width: 48,
-                height: 48,
-                backgroundColor: "rgba(0,0,0,0.7)",
-                outline: "none",
-                border: "none",
-              }}
-              name="right"
-              onTouchStart={handleJoyStickPress}
-              onTouchEnd={handleJoyStickRelease}
-              onPointerLeave={handleJoyStickRelease}
-            >
-              <img
-                style={{ pointerEvents: "none" }}
-                src="/assets/keyboard_arrow_right.svg"
-                alt="right"
-              />
-            </button>
-          </div>
-          <button
-            style={{
-              width: 48,
-              height: 48,
-              backgroundColor: "rgba(0,0,0,0.7)",
-              outline: "none",
-              border: "none",
-            }}
-            name="backward"
-            onTouchStart={handleJoyStickPress}
-            onTouchEnd={handleJoyStickRelease}
-            onPointerLeave={handleJoyStickRelease}
-          >
-            <img
-              style={{ pointerEvents: "none" }}
-              src="/assets/keyboard_arrow_down.svg"
-              alt="backward"
-            />
-          </button>
+          <Joystick
+            size={100}
+            stickSize={40}
+            baseColor="rgba(0,0,0,0.65)"
+            stickColor="#bdbdbd"
+            move={handleMove}
+            stop={handleStop}
+          ></Joystick>
         </div>
       )}
     </>
-  );
-};
+  )
+}
 
-export default MovementJoystick;
+export default MovementJoystick

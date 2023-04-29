@@ -1,110 +1,40 @@
-const CameraJoystick = ({ handleJoyStickPress, handleJoyStickRelease }) => {
+import { memo } from 'react'
+import { Joystick } from 'react-joystick-component'
+
+const CameraJoystick = ({ setJoystickRotation }) => {
+  const handleMove = (e) => {
+    const { x } = e
+    setJoystickRotation({ x })
+  }
+  const handleStop = () => {
+    setJoystickRotation({ x: 0 })
+  }
   return (
     <>
       {window.innerWidth < 1367 && (
         <div
           style={{
-            position: "absolute",
-            bottom: 64,
+            position: 'absolute',
+            bottom: 48,
             right: 64,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            zIndex: 2,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            zIndex: 2
           }}
         >
-          {/* <button
-            style={{
-              width: 32,
-              height: 32,
-              backgroundColor: "rgba(0,0,0,0.7)",
-              outline: "none",
-              border: "none",
-            }}
-            name="lookUp"
-            onPointerDown={handleJoyStickPress}
-            onPointerUp={handleJoyStickRelease}
-          >
-            <img
-              style={{ pointerEvents: "none" }}
-              src="/assets/keyboard_arrow_up.svg"
-              alt="forward"
-            />
-          </button> */}
-          <div style={{ display: "flex" }}>
-            <button
-              style={{
-                width: 32,
-                height: 32,
-                backgroundColor: "rgba(0,0,0,0.7)",
-                outline: "none",
-                border: "none",
-              }}
-              name="lookLeft"
-              onTouchStart={handleJoyStickPress}
-              onTouchEnd={handleJoyStickRelease}
-              onPointerLeave={handleJoyStickRelease}
-            >
-              <img
-                style={{ pointerEvents: "none" }}
-                src="/assets/keyboard_arrow_left.svg"
-                alt="left"
-              />
-            </button>
-            {/* <button
-              style={{
-                width: 32,
-                height: 32,
-                backgroundColor: "rgba(0,0,0,0.7)",
-                outline: "none",
-                border: "none",
-              }}
-              disabled
-              onPointerDown={handleJoyStickPress}
-              onPointerUp={handleJoyStickRelease}
-            ></button> */}
-            <button
-              style={{
-                width: 32,
-                height: 32,
-                backgroundColor: "rgba(0,0,0,0.7)",
-                outline: "none",
-                border: "none",
-              }}
-              name="lookRight"
-              onTouchStart={handleJoyStickPress}
-              onTouchEnd={handleJoyStickRelease}
-              onPointerLeave={handleJoyStickRelease}
-            >
-              <img
-                style={{ pointerEvents: "none" }}
-                src="/assets/keyboard_arrow_right.svg"
-                alt="right"
-              />
-            </button>
-          </div>
-          {/* <button
-            style={{
-              width: 32,
-              height: 32,
-              backgroundColor: "rgba(0,0,0,0.7)",
-              outline: "none",
-              border: "none",
-            }}
-            name="lookDown"
-            onPointerDown={handleJoyStickPress}
-            onPointerUp={handleJoyStickRelease}
-          >
-            <img
-              style={{ pointerEvents: "none" }}
-              src="/assets/keyboard_arrow_down.svg"
-              alt="backward"
-            />
-          </button> */}
+          <Joystick
+            size={80}
+            stickSize={30}
+            baseColor="rgba(0,0,0,0.65)"
+            stickColor="#bdbdbd"
+            move={handleMove}
+            stop={handleStop}
+          ></Joystick>
         </div>
       )}
     </>
-  );
-};
+  )
+}
 
-export default CameraJoystick;
+export default memo(CameraJoystick)
