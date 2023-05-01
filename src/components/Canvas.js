@@ -1,7 +1,7 @@
 import { Physics } from '@react-three/cannon'
 import { OrbitControls, PointerLockControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
-import { Suspense, useRef, useState } from 'react'
+import { Suspense, useRef } from 'react'
 import * as THREE from 'three'
 import Ground from './Ground'
 import House from './House'
@@ -22,9 +22,7 @@ const HouseCanvas = ({
   joystickRotation,
   setJoystickRotation
 }) => {
-  const [xDown, setXDown] = useState(null)
   const pointerLockRef = useRef(null)
-
   setTimeout(() => {
     if (pointerLockRef?.current && selectedLink) {
       setTimeout(() => {
@@ -37,31 +35,11 @@ const HouseCanvas = ({
     }
   }, [pointerLockRef, selectedLink])
 
-  const handleTouchStart = (e) => {
-    const firstTouch = e.touches[0]
-    setXDown(firstTouch.clientX)
-  }
-
   const handleTouchMove = (e) => {
-    if (!xDown) return
-
-    var xUp = e.touches[0].clientX
-
-    var xDiff = xDown - xUp
-
-    if (xDiff > 0) {
-      /* right swipe */
-      setJoystickRotation({ x: xDiff })
-    } else {
-      /* left swipe */
-      setJoystickRotation({ x: xDiff })
-    }
+    var xMove = e.changedTouches[0].screenX
+    setJoystickRotation({ x: -xMove })
   }
 
-  const handleTouchEnd = () => {
-    /* reset values */
-    setXDown(null)
-  }
   return (
     <Canvas
       gl={{
@@ -70,9 +48,7 @@ const HouseCanvas = ({
       camera={{ position: [0, 0, 0] }}
       style={{ height: '100vh' }}
       dpr={[1, 2]}
-      onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
     >
       {debug && <OrbitControls />}
       {!debug && window.innerWidth > 1367 && !showInstruct && (
