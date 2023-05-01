@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import Crosshair from '../components/Crosshair'
 import HouseCanvas from '../components/Canvas'
 import IFrame from '../components/Iframe'
-import CameraJoystick from '../components/CameraJoystick'
 import MovementJoystick from '../components/MovementJoystick'
 import Instruction from '../components/Instruction'
 import DemoVideoFrame from '../components/DemoVideoFrame'
@@ -58,7 +57,6 @@ const Home = () => {
             cursorSelected={selectedLink}
             setCursorSelected={setCursorSelected}
           />
-          <CameraJoystick setJoystickRotation={setJoystickRotation} />
           <MovementJoystick setJoystickDirection={setJoystickDirection} />
         </>
       )}
@@ -70,6 +68,7 @@ const Home = () => {
       )}
       <HouseCanvas
         debug={debug}
+        setJoystickRotation={setJoystickRotation}
         setShowDemoCanvas={setShowDemoCanvas}
         showInstruct={showInstruct}
         joystickRotation={joystickRotation}

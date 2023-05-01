@@ -33,11 +33,7 @@ const Player = (props) => {
         new Vector3(pos.current[0], pos.current[1] + 0.6, pos.current[2])
       )
     if (window.innerWidth < 1367) {
-      let xVec = 0
-      if (props.joystickRotation.x < 0) xVec = 1
-      else if (props.joystickRotation.x > 0) xVec = -1
-      else xVec = 0
-      camera.rotation.set(0, camera.rotation.y + xVec * 0.03, 0)
+      camera.rotation.set(0, props.joystickRotation.x * 0.03, 0)
     }
 
     const direction = new Vector3()
