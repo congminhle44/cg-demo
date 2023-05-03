@@ -1,7 +1,7 @@
 import { Physics } from '@react-three/cannon'
 import { OrbitControls, PointerLockControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
-import { Suspense, useRef } from 'react'
+import { Suspense, useRef, useState } from 'react'
 import * as THREE from 'three'
 import Ground from './Ground'
 import House from './House'
@@ -22,6 +22,8 @@ const HouseCanvas = ({
   joystickRotation,
   setJoystickRotation
 }) => {
+  const [currentRotation, setCurrentRation] = useState(joystickRotation.x)
+  const [initTouch, setInitTouch] = useState(null)
   const pointerLockRef = useRef(null)
   setTimeout(() => {
     if (pointerLockRef?.current && selectedLink) {
@@ -35,9 +37,19 @@ const HouseCanvas = ({
     }
   }, [pointerLockRef, selectedLink])
 
+  const handleTouchStart = (e) => {
+    const xMove = e.changedTouches[0].screenX
+    setInitTouch(xMove)
+  }
+
   const handleTouchMove = (e) => {
-    var xMove = e.changedTouches[0].screenX
-    setJoystickRotation({ x: -xMove })
+    if (!initTouch) return
+    const xMove = e.changedTouches[0].screenX
+
+    const touchDiff = xMove - initTouch
+
+    setCurrentRation(currentRotation - touchDiff)
+    setInitTouch(xMove)
   }
 
   return (
@@ -48,11 +60,12 @@ const HouseCanvas = ({
       camera={{ position: [0, 0, 0] }}
       style={{ height: '100vh' }}
       dpr={[1, 2]}
+      onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
     >
       {debug && <OrbitControls />}
       {!debug && window.innerWidth > 1367 && !showInstruct && (
-        <PointerLockControls ref={pointerLockRef} pointerSpeed={0.3} />
+        <PointerLockControls ref={pointerLockRef} pointerSpeed={0.15} />
       )}
       <ambientLight intensity={0.7} />
       <Suspense fallback={null}>
@@ -66,6 +79,7 @@ const HouseCanvas = ({
           position={[2, 0, 2]}
           joystickDirection={joystickDirection}
           joystickRotation={joystickRotation}
+          currentRotation={currentRotation}
         />
         <House
           debug={debug}

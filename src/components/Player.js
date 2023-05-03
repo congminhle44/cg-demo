@@ -10,7 +10,7 @@ const Player = (props) => {
     movement: { moveBackward, moveForward, moveLeft, moveRight, jump, sprint }
   } = useKeyboardInput()
   const { camera } = useThree()
-  const [speed, setSpeed] = useState(5)
+  const [speed, setSpeed] = useState(0)
   const [ref, api] = useSphere(() => ({
     mass: 1,
     args: [0.7, 0.5, 6],
@@ -27,13 +27,17 @@ const Player = (props) => {
     [api.position]
   )
 
+  useEffect(() => {
+    sprint ? setSpeed(3) : setSpeed(2)
+  }, [sprint])
+
   useFrame(() => {
     !props.debug &&
       camera.position.copy(
         new Vector3(pos.current[0], pos.current[1] + 0.6, pos.current[2])
       )
     if (window.innerWidth < 1367) {
-      camera.rotation.set(0, props.joystickRotation.x * 0.03, 0)
+      camera.rotation.set(0, props.currentRotation * (speed / 300), 0)
     }
 
     const direction = new Vector3()
@@ -49,7 +53,6 @@ const Player = (props) => {
       0,
       0
     )
-    sprint ? setSpeed(5) : setSpeed(3)
     direction
       .subVectors(frontVector, sideVector)
       .normalize()
