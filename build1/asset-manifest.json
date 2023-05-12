@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/metaverse/static/css/main.b568b0f8.css",
-    "main.js": "/metaverse/static/js/main.518d4663.js",
-    "static/js/753.6fd3de47.chunk.js": "/metaverse/static/js/753.6fd3de47.chunk.js",
-    "static/js/326.f234c3ef.chunk.js": "/metaverse/static/js/326.f234c3ef.chunk.js",
-    "static/js/10.0396114e.chunk.js": "/metaverse/static/js/10.0396114e.chunk.js",
-    "index.html": "/metaverse/index.html",
-    "main.b568b0f8.css.map": "/metaverse/static/css/main.b568b0f8.css.map",
-    "main.518d4663.js.map": "/metaverse/static/js/main.518d4663.js.map",
-    "753.6fd3de47.chunk.js.map": "/metaverse/static/js/753.6fd3de47.chunk.js.map",
-    "326.f234c3ef.chunk.js.map": "/metaverse/static/js/326.f234c3ef.chunk.js.map",
-    "10.0396114e.chunk.js.map": "/metaverse/static/js/10.0396114e.chunk.js.map"
+    "main.css": "/metavers/static/css/main.b568b0f8.css",
+    "main.js": "/metavers/static/js/main.6d3a2e93.js",
+    "static/js/753.6fd3de47.chunk.js": "/metavers/static/js/753.6fd3de47.chunk.js",
+    "static/js/326.f234c3ef.chunk.js": "/metavers/static/js/326.f234c3ef.chunk.js",
+    "static/js/10.0396114e.chunk.js": "/metavers/static/js/10.0396114e.chunk.js",
+    "index.html": "/metavers/index.html",
+    "main.b568b0f8.css.map": "/metavers/static/css/main.b568b0f8.css.map",
+    "main.6d3a2e93.js.map": "/metavers/static/js/main.6d3a2e93.js.map",
+    "753.6fd3de47.chunk.js.map": "/metavers/static/js/753.6fd3de47.chunk.js.map",
+    "326.f234c3ef.chunk.js.map": "/metavers/static/js/326.f234c3ef.chunk.js.map",
+    "10.0396114e.chunk.js.map": "/metavers/static/js/10.0396114e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b568b0f8.css",
-    "static/js/main.518d4663.js"
+    "static/js/main.6d3a2e93.js"
   ]
 }
