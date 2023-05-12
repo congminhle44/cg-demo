@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/metaverse/static/css/main.b568b0f8.css",
+    "main.js": "/metaverse/static/js/main.2e4c8f3c.js",
+    "static/js/753.feb918a7.chunk.js": "/metaverse/static/js/753.feb918a7.chunk.js",
+    "static/js/326.f234c3ef.chunk.js": "/metaverse/static/js/326.f234c3ef.chunk.js",
+    "static/js/534.7acc6deb.chunk.js": "/metaverse/static/js/534.7acc6deb.chunk.js",
+    "index.html": "/metaverse/index.html",
+    "main.b568b0f8.css.map": "/metaverse/static/css/main.b568b0f8.css.map",
+    "main.2e4c8f3c.js.map": "/metaverse/static/js/main.2e4c8f3c.js.map",
+    "753.feb918a7.chunk.js.map": "/metaverse/static/js/753.feb918a7.chunk.js.map",
+    "326.f234c3ef.chunk.js.map": "/metaverse/static/js/326.f234c3ef.chunk.js.map",
+    "534.7acc6deb.chunk.js.map": "/metaverse/static/js/534.7acc6deb.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b568b0f8.css",
+    "static/js/main.2e4c8f3c.js"
+  ]
+}
