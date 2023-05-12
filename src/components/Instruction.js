@@ -37,7 +37,7 @@ const Instruction = ({
             モバイル版
           </div>
         </div>
-        <div className="detail">
+        <div className={`detail ${window.innerWidth <= 1336 && "mobile"}`}>
           {instructDevice === "pc" ? (
             <>
               <img src="/assets/command.png" alt="command" />
@@ -45,7 +45,11 @@ const Instruction = ({
               <img src="/assets/perspective.png" alt="perspective" />
             </>
           ) : (
-            <p className="soon-text">Coming Soon</p>
+            <>
+              <img src="/assets/mobile1.png" alt="Mobile 1" />
+              <img src="/assets/mobile2.png" alt="Mobile 2" />
+              <img src="/assets/mobile3.png" alt="Mobile 3" />
+            </>
           )}
         </div>
       </div>

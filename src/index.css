@@ -86,6 +86,13 @@ body {
   width: 25vw;
 }
 
+.instruction .detail.mobile {
+  flex-direction: column;
+  justify-content: flex-start;
+  max-height: 50vh;
+  overflow: scroll;
+}
+
 .ring {
   width: 128px;
   height: 128px;
