@@ -37,7 +37,7 @@ const Instruction = ({
             モバイル版
           </div>
         </div>
-        <div className={`detail ${window.innerWidth <= 1336 && "mobile"}`}>
+        <div className="detail">
           {instructDevice === "pc" ? (
             <>
               <img src="/assets/command.png" alt="command" />

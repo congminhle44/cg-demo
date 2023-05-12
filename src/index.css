@@ -40,9 +40,14 @@ body {
 }
 .instruction {
   background-color: #ffffff;
-  width: fit-content;
   padding: 24px;
   border-radius: 24px;
+  width: 90%;
+}
+@media (min-width: 1336px) {
+  .instruction {
+    width: 80%;
+  }
 }
 .close-container {
   display: flex;
@@ -78,19 +83,26 @@ body {
   min-width: 40vw;
   min-height: 231px;
 }
+@media (max-width: 960px) {
+  .instruction .detail {
+    flex-direction: column;
+    justify-content: flex-start;
+    max-height: 50vh;
+    overflow: scroll;
+  }
+}
+
 .instruction .detail .soon-text {
   font-size: 64px;
   line-height: 48px;
 }
 .instruction .detail img {
-  width: 25vw;
+  width: 40vw;
 }
-
-.instruction .detail.mobile {
-  flex-direction: column;
-  justify-content: flex-start;
-  max-height: 50vh;
-  overflow: scroll;
+@media (min-width: 768px) {
+  .instruction .detail img {
+    width: 25vw;
+  }
 }
 
 .ring {
