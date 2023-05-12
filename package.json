@@ -2,6 +2,7 @@
   "name": "cg-demo",
   "version": "0.1.0",
   "private": true,
+  "homepage":"/metaverse",
   "dependencies": {
     "@react-three/cannon": "^6.5.2",
     "@react-three/drei": "^9.64.0",
